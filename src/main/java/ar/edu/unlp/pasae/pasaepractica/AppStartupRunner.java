@@ -48,6 +48,8 @@ public class AppStartupRunner implements ApplicationRunner {
 		// mbecca.removeBook(book);
 		// getPersonRepository().save(mbecca);
 
+		// // Borrar la persona y que se borren en cascada los libros
+		// getPersonRepository().delete(mbecca);
 	}
 
 }
