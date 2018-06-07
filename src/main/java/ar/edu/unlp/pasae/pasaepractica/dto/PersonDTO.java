@@ -23,7 +23,9 @@ public class PersonDTO {
 
 	private PhoneNumberDTO phoneNumber;
 
-	public PersonDTO() {
+	private Set<BookDTO> books;
+
+	private PersonDTO() {
 		setFriends(new HashSet<>());
 	}
 
@@ -44,6 +46,21 @@ public class PersonDTO {
 		setFriends(friends);
 	}
 
+	public PersonDTO(final Long id, final String name, final String surname, final PhoneNumberDTO phoneNumber,
+			final Set<PersonDTO> friends, final Set<BookDTO> books) {
+		this();
+		setId(id);
+		setName(name);
+		setSurname(surname);
+		setPhoneNumber(phoneNumber);
+		setFriends(friends);
+		setBooks(books);
+	}
+
+	public Set<BookDTO> getBooks() {
+		return books;
+	}
+
 	public Set<PersonDTO> getFriends() {
 		return friends;
 	}
@@ -62,6 +79,10 @@ public class PersonDTO {
 
 	public String getSurname() {
 		return surname;
+	}
+
+	public void setBooks(final Set<BookDTO> books) {
+		this.books = books;
 	}
 
 	public void setFriends(final Set<PersonDTO> friends) {

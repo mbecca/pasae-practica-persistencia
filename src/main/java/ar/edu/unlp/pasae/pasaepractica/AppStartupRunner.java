@@ -44,9 +44,9 @@ public class AppStartupRunner implements ApplicationRunner {
 		getPersonRepository().save(mbecca);
 		getPersonRepository().save(mbutti);
 
-		mbecca.removeBook(book);
-
-		getPersonRepository().save(mbecca);
+		// // Borrar un libro de la persona y que se borra en cascada el objeto libro
+		// mbecca.removeBook(book);
+		// getPersonRepository().save(mbecca);
 
 	}
 
