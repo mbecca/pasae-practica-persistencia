@@ -129,7 +129,7 @@ public class Person extends AbstractEntity {
 	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<Person> friends;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PhoneNumber phoneNumber;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -217,6 +217,11 @@ public class Person extends AbstractEntity {
 
 	public boolean removeFriend(final Person friend) {
 		return getFriends().remove(friend);
+	}
+
+	public void removePhoneNumber() {
+		setPhoneNumber(null);
+
 	}
 
 	private void setBooks(final Set<Book> books) {

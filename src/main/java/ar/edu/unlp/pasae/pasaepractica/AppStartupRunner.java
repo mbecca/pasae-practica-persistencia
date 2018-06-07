@@ -45,11 +45,18 @@ public class AppStartupRunner implements ApplicationRunner {
 		getPersonRepository().save(mbutti);
 
 		// // Borrar un libro de la persona y que se borra en cascada el objeto libro
+		// (orphanRemoval = true)
 		// mbecca.removeBook(book);
 		// getPersonRepository().save(mbecca);
 
 		// // Borrar la persona y que se borren en cascada los libros
 		// getPersonRepository().delete(mbecca);
+
+		// // Borrar el número de teléfono de la persona y que se borra en cascada el
+		// objeto PhoneNumber
+		// (orphanRemoval = true)
+		// mbecca.removePhoneNumber();
+		// getPersonRepository().save(mbecca);
 	}
 
 }
