@@ -3,7 +3,6 @@ package ar.edu.unlp.pasae.pasaepractica.services.api;
 import java.util.Collection;
 
 import ar.edu.unlp.pasae.pasaepractica.dto.PersonDTO;
-import ar.edu.unlp.pasae.pasaepractica.exceptions.BaseException;
 import ar.edu.unlp.pasae.pasaepractica.exceptions.PersonNotFoundException;
 
 /**
@@ -54,7 +53,5 @@ public interface IPersonaService {
 	 *
 	 */
 	void save(PersonDTO personDTO) throws PersonNotFoundException;
-
-	void thowException() throws BaseException;
 
 }

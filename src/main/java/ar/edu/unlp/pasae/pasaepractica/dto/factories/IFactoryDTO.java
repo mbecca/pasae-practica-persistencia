@@ -6,9 +6,9 @@ import java.util.List;
 import ar.edu.unlp.pasae.pasaepractica.dto.CarDTO;
 import ar.edu.unlp.pasae.pasaepractica.dto.PersonDTO;
 import ar.edu.unlp.pasae.pasaepractica.dto.PhoneNumberDTO;
-import ar.edu.unlp.pasae.pasaepractica.entity.Car;
-import ar.edu.unlp.pasae.pasaepractica.entity.Person;
-import ar.edu.unlp.pasae.pasaepractica.entity.PhoneNumber;
+import ar.edu.unlp.pasae.pasaepractica.entities.Car;
+import ar.edu.unlp.pasae.pasaepractica.entities.Person;
+import ar.edu.unlp.pasae.pasaepractica.entities.PhoneNumber;
 
 /**
  * Clase que representa a la interfaz de la fábrica de DTO's

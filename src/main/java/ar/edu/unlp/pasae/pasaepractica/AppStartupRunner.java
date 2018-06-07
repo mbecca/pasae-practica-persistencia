@@ -5,8 +5,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import ar.edu.unlp.pasae.pasaepractica.entity.Person;
-import ar.edu.unlp.pasae.pasaepractica.entity.PhoneNumber;
+import ar.edu.unlp.pasae.pasaepractica.entities.Book;
+import ar.edu.unlp.pasae.pasaepractica.entities.Person;
+import ar.edu.unlp.pasae.pasaepractica.entities.PhoneNumber;
 import ar.edu.unlp.pasae.pasaepractica.repositories.IPersonRepository;
 
 @Component
@@ -28,9 +29,12 @@ public class AppStartupRunner implements ApplicationRunner {
 		final Person lmessi = new Person("Lionel", "Messi");
 		final Person ghiguain = new Person("Gonzalo", "Higuain");
 
+		final Book book = new Book(1234, "UnNombre", mbecca);
+
 		mbecca.addPhoneNumber(new PhoneNumber(1234));
 		mbecca.addFriend(lmessi);
 		mbecca.addFriend(ghiguain);
+		mbecca.addBook(book);
 
 		mbutti.addFriend(ghiguain);
 
@@ -39,6 +43,10 @@ public class AppStartupRunner implements ApplicationRunner {
 
 		getPersonRepository().save(mbecca);
 		getPersonRepository().save(mbutti);
+
+		mbecca.removeBook(book);
+
+		getPersonRepository().save(mbecca);
 
 	}
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.pasae.pasaepractica.dto.CarDTO;
 import ar.edu.unlp.pasae.pasaepractica.dto.factories.IFactoryDTO;
-import ar.edu.unlp.pasae.pasaepractica.entity.Car;
+import ar.edu.unlp.pasae.pasaepractica.entities.Car;
 import ar.edu.unlp.pasae.pasaepractica.repositories.ICarRepository;
 import ar.edu.unlp.pasae.pasaepractica.services.api.IAutoService;
 

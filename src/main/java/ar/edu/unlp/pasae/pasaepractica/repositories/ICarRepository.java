@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import ar.edu.unlp.pasae.pasaepractica.entity.Car;
+import ar.edu.unlp.pasae.pasaepractica.entities.Car;
 
 /**
  * @author Matías Beccaria

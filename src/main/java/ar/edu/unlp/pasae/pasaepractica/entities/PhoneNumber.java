@@ -1,4 +1,4 @@
-package ar.edu.unlp.pasae.pasaepractica.entity;
+package ar.edu.unlp.pasae.pasaepractica.entities;
 
 import javax.persistence.Entity;
 

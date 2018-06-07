@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.pasae.pasaepractica.dto.PersonDTO;
 import ar.edu.unlp.pasae.pasaepractica.dto.factories.IFactoryDTO;
-import ar.edu.unlp.pasae.pasaepractica.entity.Person;
-import ar.edu.unlp.pasae.pasaepractica.entity.Person.PersonBuilder;
-import ar.edu.unlp.pasae.pasaepractica.entity.PhoneNumber;
-import ar.edu.unlp.pasae.pasaepractica.exceptions.BaseException;
+import ar.edu.unlp.pasae.pasaepractica.entities.Person;
+import ar.edu.unlp.pasae.pasaepractica.entities.PhoneNumber;
+import ar.edu.unlp.pasae.pasaepractica.entities.Person.PersonBuilder;
 import ar.edu.unlp.pasae.pasaepractica.exceptions.PersonNotFoundException;
 import ar.edu.unlp.pasae.pasaepractica.repositories.IPersonRepository;
 import ar.edu.unlp.pasae.pasaepractica.services.api.IPersonaService;
@@ -33,16 +32,6 @@ public class PersonService implements IPersonaService {
 
 	@Autowired
 	private IFactoryDTO factoryDTO;
-
-	private Set<Person> buscarPersonas(final Set<PersonDTO> personsDTO) throws PersonNotFoundException {
-		final Set<Person> friends = new HashSet<>();
-		for (final PersonDTO dto : personsDTO) {
-			final Optional<Person> optional = getPersonRepository().findById(dto.getId());
-			final Person person = optional.orElseThrow(PersonNotFoundException::new);
-			friends.add(person);
-		}
-		return friends;
-	}
 
 	@Override
 	public void delete(final Long id) {
@@ -70,6 +59,16 @@ public class PersonService implements IPersonaService {
 		return getFactoryDTO().convertToPersonDTOs(list);
 	}
 
+	private Set<Person> findPersons(final Set<PersonDTO> personsDTO) throws PersonNotFoundException {
+		final Set<Person> friends = new HashSet<>();
+		for (final PersonDTO dto : personsDTO) {
+			final Optional<Person> optional = getPersonRepository().findById(dto.getId());
+			final Person person = optional.orElseThrow(PersonNotFoundException::new);
+			friends.add(person);
+		}
+		return friends;
+	}
+
 	private IFactoryDTO getFactoryDTO() {
 		return factoryDTO;
 	}
@@ -92,8 +91,8 @@ public class PersonService implements IPersonaService {
 		personBuilder.addName(personaDTO.getName());
 		personBuilder.addSurname(personaDTO.getSurname());
 
-		// Se obtiene la colleción de amigos
-		final Set<Person> friends = buscarPersonas(personaDTO.getFriends());
+		// Se obtiene la collección de amigos
+		final Set<Person> friends = findPersons(personaDTO.getFriends());
 		personBuilder.addFriends(friends);
 
 		final PhoneNumber phoneNumber = new PhoneNumber(personaDTO.getPhoneNumber().getNumber());
@@ -103,11 +102,6 @@ public class PersonService implements IPersonaService {
 
 		getPersonRepository().save(person);
 
-	}
-
-	@Override
-	public void thowException() throws BaseException {
-		throw new RuntimeException("Excepción runtime");
 	}
 
 }

@@ -1,4 +1,4 @@
-package ar.edu.unlp.pasae.pasaepractica.entity;
+package ar.edu.unlp.pasae.pasaepractica.entities;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,9 +32,16 @@ public class Person extends AbstractEntity {
 
 		private Set<Person> friends;
 
+		private Set<Book> books;
+
 		private PhoneNumber phoneNumber;
 
 		private PersonBuilder() {
+		}
+
+		public PersonBuilder addBooks(final Set<Book> books) {
+			setBooks(books);
+			return this;
 		}
 
 		public PersonBuilder addFriends(final Set<Person> friends) {
@@ -60,8 +68,13 @@ public class Person extends AbstractEntity {
 			final Person person = new Person(getName(), getSurname());
 			person.setPhoneNumber(getPhoneNumber());
 			person.setFriends(getFriends());
+			person.setBooks(getBooks());
 			return person;
 
+		}
+
+		private Set<Book> getBooks() {
+			return books;
 		}
 
 		private Set<Person> getFriends() {
@@ -78,6 +91,10 @@ public class Person extends AbstractEntity {
 
 		private String getSurname() {
 			return surname;
+		}
+
+		private void setBooks(final Set<Book> books) {
+			this.books = books;
 		}
 
 		private void setFriends(final Set<Person> friends) {
@@ -115,14 +132,23 @@ public class Person extends AbstractEntity {
 	@OneToOne(cascade = CascadeType.ALL)
 	private PhoneNumber phoneNumber;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Book> books;
+
 	private Person() {
 		setFriends(new HashSet<>());
+		setBooks(new HashSet<>());
 	}
 
 	public Person(final String name, final String surname) {
 		this();
 		setName(name);
 		setSurname(surname);
+	}
+
+	public void addBook(final Book book) {
+		getBooks().add(book);
+
 	}
 
 	public boolean addFriend(final Person friend) {
@@ -155,6 +181,10 @@ public class Person extends AbstractEntity {
 		return true;
 	}
 
+	public Set<Book> getBooks() {
+		return books;
+	}
+
 	public Collection<Person> getFriends() {
 		return friends;
 	}
@@ -180,8 +210,17 @@ public class Person extends AbstractEntity {
 		return result;
 	}
 
+	public boolean removeBook(final Book book) {
+		return getBooks().remove(book);
+
+	}
+
 	public boolean removeFriend(final Person friend) {
 		return getFriends().remove(friend);
+	}
+
+	private void setBooks(final Set<Book> books) {
+		this.books = books;
 	}
 
 	private void setFriends(final Set<Person> friends) {

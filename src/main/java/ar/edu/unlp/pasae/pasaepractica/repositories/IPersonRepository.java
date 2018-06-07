@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import ar.edu.unlp.pasae.pasaepractica.entity.Person;
+import ar.edu.unlp.pasae.pasaepractica.entities.Person;
 
 /**
  * Clase que representa a la interfaz de repositorio Persona. Se implementa con
