@@ -6,7 +6,12 @@ public class PhoneNumberDTO {
 
 	private long id;
 
+	private PhoneNumberDTO() {
+
+	}
+
 	public PhoneNumberDTO(final long id, final long number) {
+		this();
 		setNumber(number);
 		setId(id);
 	}
